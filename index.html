@@ -648,11 +648,25 @@
     .video-caption strong { color: var(--white); }
     .interface-proof { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 18px 0 0; }
     .interface-proof figure { overflow: hidden; margin: 0; border: 1px solid #53514c; background: #252522; }
-    .interface-proof img { display: block; width: 100%; aspect-ratio: 16 / 7; object-fit: cover; object-position: top; transition: transform 300ms ease; }
-    .interface-proof figure:hover img { transform: scale(1.025); }
+    .proof-button { position: relative; display: block; width: 100%; padding: 0; border: 0; color: inherit; background: transparent; cursor: zoom-in; }
+    .proof-button::after { content: "zoom_in"; position: absolute; right: 10px; bottom: 10px; display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid rgba(255, 255, 255, 0.55); color: var(--white); background: rgba(20, 20, 19, 0.78); font-family: "Material Symbols Outlined"; font-size: 20px; backdrop-filter: blur(8px); transition: background-color 180ms ease, transform 180ms ease; }
+    .proof-button:hover::after { background: var(--copper-dark); transform: scale(1.06); }
+    .proof-button img { display: block; width: 100%; aspect-ratio: 16 / 7; object-fit: cover; object-position: top; transition: transform 300ms ease; }
+    .proof-button:hover img { transform: scale(1.025); }
     .interface-proof figcaption { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 9px 11px; color: #cbc7bd; font-size: 0.68rem; }
     .interface-proof figcaption b { color: var(--white); font: 800 0.65rem/1 var(--mono); }
     .solution-note { margin: 20px 0 0; padding-top: 14px; border-top: 1px solid #53514c; color: #a9a69f; font-size: 0.72rem; }
+
+    .image-lightbox { width: min(94vw, 1500px); max-width: none; height: min(92vh, 920px); max-height: none; margin: auto; padding: 0; border: 1px solid #6c6962; color: var(--white); background: #111110; box-shadow: 0 30px 90px rgba(0, 0, 0, 0.58); }
+    .image-lightbox::backdrop { background: rgba(10, 10, 9, 0.86); backdrop-filter: blur(5px); }
+    .lightbox-inner { display: grid; grid-template-rows: auto minmax(0, 1fr); height: 100%; }
+    .lightbox-header { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 62px; padding: 12px 14px 12px 20px; border-bottom: 1px solid #45433f; }
+    .lightbox-title { margin: 0; font-size: 0.9rem; font-weight: 800; }
+    .lightbox-close { display: inline-flex; align-items: center; gap: 8px; min-height: 38px; padding: 8px 12px; border: 1px solid #77736b; color: var(--white); background: transparent; cursor: pointer; font: 800 0.75rem/1 var(--sans); }
+    .lightbox-close:hover { border-color: var(--copper); background: var(--copper-dark); }
+    .lightbox-close .material-symbols-outlined { font-size: 18px; }
+    .lightbox-stage { display: grid; place-items: center; min-height: 0; overflow: auto; padding: 18px; background: #080808; }
+    .lightbox-stage img { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
 
     .connection-layout { display: grid; grid-template-columns: 0.7fr 1.3fr; gap: 44px; }
     .connection-copy { position: sticky; top: calc(var(--header) + 28px); align-self: start; }
@@ -889,8 +903,14 @@
       .video-pipeline li:not(:last-child)::after { content: "↓"; top: auto; right: 14px; bottom: -8px; }
       .video-pipeline b { margin-top: 0; white-space: normal; }
       .interface-proof { grid-template-columns: 1fr; }
-      .interface-proof img { aspect-ratio: 16 / 8; }
+      .proof-button img { aspect-ratio: 16 / 8; }
       .video-caption { flex-direction: column; gap: 4px; }
+      .image-lightbox { width: 96vw; height: 88vh; }
+      .lightbox-header { min-height: 56px; padding: 10px 10px 10px 14px; }
+      .lightbox-title { overflow: hidden; font-size: 0.78rem; text-overflow: ellipsis; white-space: nowrap; }
+      .lightbox-close { min-width: 42px; padding: 8px; }
+      .lightbox-close span:last-child { display: none; }
+      .lightbox-stage { padding: 8px; }
       .contact-item { grid-template-columns: 48px 1fr; gap: 14px; }
       .contact-item p { grid-column: 2; }
       .result-item { grid-template-columns: 84px 1fr; gap: 14px; }
@@ -1081,13 +1101,23 @@
             <div class="video-caption"><strong>AI VIDEO DEMO</strong><span>프롬프트 이미지 → 자동 영상 연결 → 완성본</span></div>
           </div>
           <div class="interface-proof" aria-label="AI 영상 제작 솔루션 실제 화면">
-            <figure><img src="assets/ai-video-dashboard.png" alt="AI 영상 제작 프로젝트 대시보드" loading="lazy"><figcaption><b>01 PROJECT</b><span>한눈에 보는 제작 흐름</span></figcaption></figure>
-            <figure><img src="assets/ai-video-image-generation.png" alt="프롬프트로 만든 장면별 이미지 비교와 선택 화면" loading="lazy"><figcaption><b>02 IMAGE</b><span>생성 · 비교 · 선택</span></figcaption></figure>
-            <figure><img src="assets/ai-video-export.png" alt="생성 영상을 연결하고 MP4로 출력하는 화면" loading="lazy"><figcaption><b>03 EXPORT</b><span>영상 연결 · MP4 출력</span></figcaption></figure>
+            <figure><button class="proof-button" type="button" data-lightbox-src="assets/ai-video-dashboard.png" data-lightbox-title="프로젝트 대시보드 · 한눈에 보는 제작 흐름" aria-label="AI 영상 제작 프로젝트 대시보드 크게 보기"><img src="assets/ai-video-dashboard.png" alt="AI 영상 제작 프로젝트 대시보드" loading="lazy"></button><figcaption><b>01 PROJECT</b><span>한눈에 보는 제작 흐름</span></figcaption></figure>
+            <figure><button class="proof-button" type="button" data-lightbox-src="assets/ai-video-image-generation.png" data-lightbox-title="이미지 생성 · 비교 · 선택" aria-label="프롬프트 이미지 생성과 선택 화면 크게 보기"><img src="assets/ai-video-image-generation.png" alt="프롬프트로 만든 장면별 이미지 비교와 선택 화면" loading="lazy"></button><figcaption><b>02 IMAGE</b><span>생성 · 비교 · 선택</span></figcaption></figure>
+            <figure><button class="proof-button" type="button" data-lightbox-src="assets/ai-video-export.png" data-lightbox-title="영상 연결 · MP4 출력" aria-label="영상 연결과 MP4 출력 화면 크게 보기"><img src="assets/ai-video-export.png" alt="생성 영상을 연결하고 MP4로 출력하는 화면" loading="lazy"></button><figcaption><b>03 EXPORT</b><span>영상 연결 · MP4 출력</span></figcaption></figure>
           </div>
         </div>
       </div>
     </section>
+
+    <dialog class="image-lightbox" aria-labelledby="lightbox-title">
+      <div class="lightbox-inner">
+        <header class="lightbox-header">
+          <p class="lightbox-title" id="lightbox-title">제작 화면 크게 보기</p>
+          <button class="lightbox-close" type="button" aria-label="확대 이미지 닫기"><span class="material-symbols-outlined" aria-hidden="true">close</span><span>닫기</span></button>
+        </header>
+        <div class="lightbox-stage"><img src="" alt=""></div>
+      </div>
+    </dialog>
 
     <section class="section content-section" id="results" data-motion="zoom-out" aria-labelledby="results-title">
       <header class="section-heading">
@@ -1165,6 +1195,10 @@
       const processLinks = [...document.querySelectorAll(".process-node")];
       const brandLink = document.querySelector(".brand");
       const nextButton = document.querySelector(".next-chapter");
+      const lightbox = document.querySelector(".image-lightbox");
+      const lightboxImage = lightbox?.querySelector(".lightbox-stage img");
+      const lightboxTitle = lightbox?.querySelector(".lightbox-title");
+      const lightboxClose = lightbox?.querySelector(".lightbox-close");
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
       let activeStep = 0;
       let navigationLocked = false;
@@ -1262,6 +1296,19 @@
         event.preventDefault();
         moveTo(link.getAttribute("href").slice(1));
       }));
+      document.querySelectorAll("[data-lightbox-src]").forEach((button) => {
+        button.addEventListener("click", () => {
+          if (!lightbox || !lightboxImage || !lightboxTitle) return;
+          lightboxImage.src = button.dataset.lightboxSrc;
+          lightboxImage.alt = button.querySelector("img")?.alt || "AI 영상 제작 화면";
+          lightboxTitle.textContent = button.dataset.lightboxTitle || "제작 화면 크게 보기";
+          lightbox.showModal();
+        });
+      });
+      lightboxClose?.addEventListener("click", () => lightbox.close());
+      lightbox?.addEventListener("click", (event) => {
+        if (event.target === lightbox) lightbox.close();
+      });
       brandLink?.addEventListener("click", (event) => {
         event.preventDefault();
         moveTo("overview");
