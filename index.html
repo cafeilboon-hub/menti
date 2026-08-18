@@ -615,7 +615,44 @@
     .product-note:nth-child(3) { --note-accent: var(--sage); --note-fill: var(--sage-pale); }
     .product-note h3 { margin: 0 0 9px; font-size: 0.95rem; }
     .product-note p { margin: 0; color: var(--muted); font-size: 0.8rem; }
+    .product-note-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; color: var(--copper-dark); font-size: 0.76rem; font-weight: 850; text-decoration: none; }
+    .product-note-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .product-note-link .material-symbols-outlined { font-size: 17px; }
     .privacy-note { margin-top: 28px; padding: 16px 18px; border: 1px solid var(--line); color: var(--muted); font-size: 0.76rem; }
+
+    .video-solution {
+      padding: clamp(34px, 5vh, 58px) 40px;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 82% 18%, rgba(217, 119, 87, 0.2), transparent 32%),
+        var(--ink);
+    }
+
+    .video-solution .section-heading { margin-bottom: clamp(22px, 3vh, 34px); }
+    .video-solution .section-heading .index { color: #f5a486; }
+    .video-solution .section-heading p { color: #cbc7bd; }
+    .video-showcase { display: grid; grid-template-columns: minmax(300px, 0.74fr) minmax(0, 1.26fr); gap: 34px; align-items: start; }
+    .video-story { display: grid; gap: 22px; }
+    .solution-label { width: fit-content; margin: 0; padding: 7px 10px; border: 1px solid rgba(245, 164, 134, 0.6); color: #f5a486; font: 800 0.68rem/1 var(--mono); letter-spacing: 0.08em; }
+    .video-story h3 { margin: 0; font-size: clamp(1.65rem, 2.6vw, 2.9rem); line-height: 1.16; letter-spacing: -0.035em; }
+    .video-story > p { margin: 0; color: #cbc7bd; font-size: 0.9rem; }
+    .video-pipeline { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin: 0; padding: 0; border: 1px solid #53514c; list-style: none; }
+    .video-pipeline li { position: relative; min-width: 0; padding: 14px 10px; border-left: 1px solid #53514c; }
+    .video-pipeline li:first-child { border-left: 0; }
+    .video-pipeline li:not(:last-child)::after { content: "→"; position: absolute; z-index: 2; top: 17px; right: -8px; color: #f5a486; font: 800 0.7rem/1 var(--mono); }
+    .video-pipeline small { display: block; color: #f5a486; font: 800 0.62rem/1 var(--mono); }
+    .video-pipeline b { display: block; margin-top: 8px; overflow: hidden; font-size: 0.72rem; line-height: 1.3; text-overflow: ellipsis; white-space: nowrap; }
+    .video-frame { overflow: hidden; border: 1px solid #66635d; background: #070707; box-shadow: 0 24px 54px rgba(0, 0, 0, 0.34); }
+    .video-frame video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #070707; object-fit: contain; }
+    .video-caption { display: flex; justify-content: space-between; gap: 18px; padding: 12px 14px; color: #cbc7bd; font: 700 0.68rem/1.4 var(--mono); }
+    .video-caption strong { color: var(--white); }
+    .interface-proof { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 18px 0 0; }
+    .interface-proof figure { overflow: hidden; margin: 0; border: 1px solid #53514c; background: #252522; }
+    .interface-proof img { display: block; width: 100%; aspect-ratio: 16 / 7; object-fit: cover; object-position: top; transition: transform 300ms ease; }
+    .interface-proof figure:hover img { transform: scale(1.025); }
+    .interface-proof figcaption { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 9px 11px; color: #cbc7bd; font-size: 0.68rem; }
+    .interface-proof figcaption b { color: var(--white); font: 800 0.65rem/1 var(--mono); }
+    .solution-note { margin: 20px 0 0; padding-top: 14px; border-top: 1px solid #53514c; color: #a9a69f; font-size: 0.72rem; }
 
     .connection-layout { display: grid; grid-template-columns: 0.7fr 1.3fr; gap: 44px; }
     .connection-copy { position: sticky; top: calc(var(--header) + 28px); align-self: start; }
@@ -810,6 +847,8 @@
       .workflow-step { min-height: 0; }
       .workflow-step + .workflow-step { border-top: 5px solid var(--step-accent); border-left: 0; }
       .product-notes { grid-template-columns: 1fr; }
+      .video-showcase { grid-template-columns: 1fr; }
+      .video-pipeline { margin-bottom: 8px; }
       .closing-action { border-top: 1px solid var(--line); border-left: 0; }
     }
 
@@ -843,6 +882,15 @@
       .mentor-quote { min-height: 300px; padding: 26px; }
       .foundation { grid-template-columns: 1fr; }
       .product-intro { grid-template-columns: 1fr; gap: 12px; }
+      .video-solution { padding: 52px 18px; }
+      .video-pipeline { grid-template-columns: 1fr; }
+      .video-pipeline li { display: grid; grid-template-columns: 38px 1fr; align-items: center; border-top: 1px solid #53514c; border-left: 0; }
+      .video-pipeline li:first-child { border-top: 0; }
+      .video-pipeline li:not(:last-child)::after { content: "↓"; top: auto; right: 14px; bottom: -8px; }
+      .video-pipeline b { margin-top: 0; white-space: normal; }
+      .interface-proof { grid-template-columns: 1fr; }
+      .interface-proof img { aspect-ratio: 16 / 8; }
+      .video-caption { flex-direction: column; gap: 4px; }
       .contact-item { grid-template-columns: 48px 1fr; gap: 14px; }
       .contact-item p { grid-column: 2; }
       .result-item { grid-template-columns: 84px 1fr; gap: 14px; }
@@ -998,11 +1046,47 @@
         <article class="workflow-step"><small>05</small><h3>Validate &amp; Gerber</h3><p>규칙 검증 후 제조 파일로 이어집니다.</p></article>
       </div>
       <div class="product-notes" aria-label="나머지 자체 제품 작업">
-        <article class="product-note"><h3>AI 동영상 광고</h3><p>몇 번의 입력으로 숏폼부터 3분 숏드라마까지 광고 제작 흐름을 단축하는 제품입니다. 개발 완료 후 상품화를 진행 중입니다.</p></article>
+        <article class="product-note"><h3>AI 동영상 광고</h3><p>프롬프트로 장면 이미지를 만들고, 선택한 이미지를 영상으로 자동 연결해 완성본까지 이어지는 제작 솔루션입니다.</p><a class="product-note-link" href="#video-solution">실제 제작 흐름 보기 <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a></article>
         <article class="product-note"><h3>특허정보 · ASEN</h3><p>아시아 6개국 특허정보와 KIPRIS를 AI로 비교해 해외 유사·침해 가능성의 조기 대응을 돕습니다. 2차 개발을 진행 중입니다.</p></article>
         <article class="product-note"><h3>이러닝 AI</h3><p>특허받은 영어 학습 방법론을 학습자별로 적용하는 AI 버전입니다. 방법론 보유사의 브랜드와 사명은 공개하지 않습니다.</p></article>
       </div>
       <p class="privacy-note"><strong>구분 원칙</strong> · 위 제품 개발은 민성의 자체 제품 작업입니다. 아래 결과 6개는 “멘토의 소개가 없었다면 이어지지 않았을 결과”만 집계했습니다.</p>
+    </section>
+
+    <section class="section video-solution" id="video-solution" data-motion="fade-rise" aria-labelledby="video-solution-title">
+      <header class="section-heading">
+        <span class="index">03+ · PRODUCT IN ACTION</span>
+        <div><h2 id="video-solution-title">한 줄의 프롬프트가<br>움직이는 장면이 됩니다</h2><p>장면을 설명하면 이미지를 생성하고, 선택한 컷을 짧은 영상으로 변환해 순서대로 연결합니다. 아이디어부터 MP4 완성본까지 하나의 흐름에서 관리하는 AI 영상 제작 솔루션입니다.</p></div>
+      </header>
+      <div class="video-showcase">
+        <div class="video-story">
+          <p class="solution-label">PROMPT → IMAGE → VIDEO</p>
+          <h3>이미지를 만드는 데서 끝나지 않고,<br>영상으로 이어집니다.</h3>
+          <p>장면마다 여러 이미지를 비교해 하나를 고르면, 선택 결과가 영상 생성과 편집 타임라인으로 이어집니다. 반복 작업은 자동화하고 최종 장면 선택은 사람이 결정합니다.</p>
+          <ol class="video-pipeline" aria-label="AI 동영상 자동 제작 다섯 단계">
+            <li><small>01</small><b>프롬프트</b></li>
+            <li><small>02</small><b>장면 설계</b></li>
+            <li><small>03</small><b>이미지 생성</b></li>
+            <li><small>04</small><b>영상 연결</b></li>
+            <li><small>05</small><b>MP4 출력</b></li>
+          </ol>
+          <p class="solution-note"><strong>현재 상태</strong> · 실제 제작 화면과 생성 결과를 기반으로 한 프로토타입이며, 자체 제품 개발 성과로 별도 구분합니다.</p>
+        </div>
+        <div>
+          <div class="video-frame">
+            <video controls playsinline preload="metadata" poster="assets/ai-video-export.png" aria-label="AI로 생성한 이미지가 영상으로 연결된 결과 데모">
+              <source src="assets/ai-video-demo.mp4" type="video/mp4">
+              브라우저가 동영상 재생을 지원하지 않습니다. MP4 파일을 직접 열어 확인해 주세요.
+            </video>
+            <div class="video-caption"><strong>AI VIDEO DEMO</strong><span>프롬프트 이미지 → 자동 영상 연결 → 완성본</span></div>
+          </div>
+          <div class="interface-proof" aria-label="AI 영상 제작 솔루션 실제 화면">
+            <figure><img src="assets/ai-video-dashboard.png" alt="AI 영상 제작 프로젝트 대시보드" loading="lazy"><figcaption><b>01 PROJECT</b><span>한눈에 보는 제작 흐름</span></figcaption></figure>
+            <figure><img src="assets/ai-video-image-generation.png" alt="프롬프트로 만든 장면별 이미지 비교와 선택 화면" loading="lazy"><figcaption><b>02 IMAGE</b><span>생성 · 비교 · 선택</span></figcaption></figure>
+            <figure><img src="assets/ai-video-export.png" alt="생성 영상을 연결하고 MP4로 출력하는 화면" loading="lazy"><figcaption><b>03 EXPORT</b><span>영상 연결 · MP4 출력</span></figcaption></figure>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="section content-section" id="results" data-motion="zoom-out" aria-labelledby="results-title">
@@ -1076,7 +1160,7 @@
     (() => {
       document.documentElement.classList.add("has-page-motion");
       const chapterIds = ["problem", "connection", "execution", "results"];
-      const flowIds = ["overview", ...chapterIds, "change", "lessons"];
+      const flowIds = ["overview", "problem", "connection", "execution", "video-solution", "results", "change", "lessons"];
       const links = [...document.querySelectorAll("[data-chapter]")];
       const processLinks = [...document.querySelectorAll(".process-node")];
       const brandLink = document.querySelector(".brand");
@@ -1093,6 +1177,7 @@
         links.forEach((link) => {
           const currentChapter = id === "overview"
             ? "problem"
+            : id === "video-solution" ? "execution"
             : ["change", "lessons"].includes(id) ? "results" : id;
           const isCurrent = link.dataset.chapter === currentChapter;
           if (isCurrent) link.setAttribute("aria-current", "true");

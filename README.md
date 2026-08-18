@@ -22,12 +22,13 @@ python -m http.server 4173 --bind 127.0.0.1
 ## 구성과 조작
 
 - 상단의 `문제`·`멘토의 연결`·`실행`·`결과` 장 탐색
-- 우측의 `다음 내용` 버튼으로 `첫 화면 → 01 → 02 → 03 → 04 → Before/After → What we learned → 첫 화면` 순환, 마지막에는 `처음으로` 복귀
+- 우측의 `다음 내용` 버튼으로 `첫 화면 → 01 → 02 → 03 → AI 동영상 제작 → 04 → Before/After → What we learned → 첫 화면` 순환, 마지막에는 `처음으로` 복귀
 - 첫 화면의 경로 노드로 각 장에 직접 이동
 - 각 장은 헤더를 제외한 화면 높이를 한 장으로 사용하며, 스크롤 스냅과 순차 진입 애니메이션으로 전환
 - 장마다 페이드·슬라이드·줌인·줌아웃 조합을 달리하고, 약 1.6초의 여유 있는 전환과 iOS식 눌림·스프링 반응을 제공
 - 기반·연결·실행·결과·전후 비교 표는 구리·오커·세이지·슬레이트 색상으로 역할과 상태를 구분
-- URL 해시 `#overview`, `#problem`, `#connection`, `#execution`, `#results`, `#change`, `#lessons`
+- URL 해시 `#overview`, `#problem`, `#connection`, `#execution`, `#video-solution`, `#results`, `#change`, `#lessons`
+- AI 동영상 제작 화면에서 `프롬프트 → 장면 설계 → 이미지 생성 → 영상 연결 → MP4 출력` 흐름, 실제 제작 UI 3종과 결과 MP4 재생
 - `motioncore.ai에서 보기` 버튼으로 제품 사이트 이동
 
 ## 현재 편집 구조
