@@ -642,6 +642,7 @@
     .video-pipeline li:not(:last-child)::after { content: "→"; position: absolute; z-index: 2; top: 17px; right: -8px; color: #f5a486; font: 800 0.7rem/1 var(--mono); }
     .video-pipeline small { display: block; color: #f5a486; font: 800 0.62rem/1 var(--mono); }
     .video-pipeline b { display: block; margin-top: 8px; overflow: hidden; font-size: 0.72rem; line-height: 1.3; text-overflow: ellipsis; white-space: nowrap; }
+    .video-results { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .video-frame { overflow: hidden; border: 1px solid #66635d; background: #070707; box-shadow: 0 24px 54px rgba(0, 0, 0, 0.34); }
     .video-frame video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #070707; object-fit: contain; }
     .video-caption { display: flex; justify-content: space-between; gap: 18px; padding: 12px 14px; color: #cbc7bd; font: 700 0.68rem/1.4 var(--mono); }
@@ -904,6 +905,7 @@
       .video-pipeline b { margin-top: 0; white-space: normal; }
       .interface-proof { grid-template-columns: 1fr; }
       .proof-button img { aspect-ratio: 16 / 8; }
+      .video-results { grid-template-columns: 1fr; }
       .video-caption { flex-direction: column; gap: 4px; }
       .image-lightbox { width: 96vw; height: 88vh; }
       .lightbox-header { min-height: 56px; padding: 10px 10px 10px 14px; }
@@ -1093,12 +1095,21 @@
           <p class="solution-note"><strong>현재 상태</strong> · 실제 제작 화면과 생성 결과를 기반으로 한 프로토타입이며, 자체 제품 개발 성과로 별도 구분합니다.</p>
         </div>
         <div>
-          <div class="video-frame">
-            <video controls playsinline preload="metadata" poster="assets/ai-video-export.png" aria-label="AI로 생성한 이미지가 영상으로 연결된 결과 데모">
-              <source src="assets/ai-video-demo.mp4" type="video/mp4">
-              브라우저가 동영상 재생을 지원하지 않습니다. MP4 파일을 직접 열어 확인해 주세요.
-            </video>
-            <div class="video-caption"><strong>AI VIDEO DEMO</strong><span>프롬프트 이미지 → 자동 영상 연결 → 완성본</span></div>
+          <div class="video-results" aria-label="AI 영상 제작 결과 데모">
+            <div class="video-frame">
+              <video controls playsinline preload="metadata" poster="assets/ai-video-export.png" aria-label="카페 홍보 AI 영상 데모">
+                <source src="assets/ai-video-demo.mp4" type="video/mp4">
+                브라우저가 동영상 재생을 지원하지 않습니다. MP4 파일을 직접 열어 확인해 주세요.
+              </video>
+              <div class="video-caption"><strong>CAFE PROMO</strong><span>프롬프트 이미지 → 자동 영상 연결</span></div>
+            </div>
+            <div class="video-frame">
+              <video controls playsinline preload="metadata" aria-label="여자 아이돌 VLOG AI 영상 데모">
+                <source src="assets/ai-video-idol-vlog.mp4" type="video/mp4">
+                브라우저가 동영상 재생을 지원하지 않습니다. MP4 파일을 직접 열어 확인해 주세요.
+              </video>
+              <div class="video-caption"><strong>IDOL VLOG</strong><span>여자 아이돌 VLOG 결과 영상</span></div>
+            </div>
           </div>
           <div class="interface-proof" aria-label="AI 영상 제작 솔루션 실제 화면">
             <figure><button class="proof-button" type="button" data-lightbox-src="assets/ai-video-dashboard.png" data-lightbox-title="프로젝트 대시보드 · 한눈에 보는 제작 흐름" aria-label="AI 영상 제작 프로젝트 대시보드 크게 보기"><img src="assets/ai-video-dashboard.png" alt="AI 영상 제작 프로젝트 대시보드" loading="lazy"></button><figcaption><b>01 PROJECT</b><span>한눈에 보는 제작 흐름</span></figcaption></figure>
